@@ -21,6 +21,7 @@ const Post = (props) => {
     const handleShow = () => setShow(true);
     const navigate = useNavigate();
 
+    const userData = JSON.parse(localStorage.getItem('userData'));
     const {user , blogs , setBlogs} = useUser();
 
     useEffect(()=>{
@@ -38,12 +39,12 @@ const Post = (props) => {
 
 
     const add = (e)=>{
-        const url = `http://localhost:5000/blog/${user.username}/${newBlogTitle}`;
+        const url = `http://localhost:5000/blog/${userData?.username}/${newBlogTitle}`;
 
         const data = {
             blogBody : newBlogDescription ,
             blogTitle : newBlogTitle ,
-            userid : user.username,
+            userid : userData?.username,
             blogLink : newBlogLink,
             blogTags : newBlogTags
         }
@@ -61,10 +62,6 @@ const Post = (props) => {
             console.log(err);
         });
     }
-
-    // function edit(e){
-
-    // }
 
   return (
     <section  id={props.id}> 

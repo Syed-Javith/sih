@@ -1,7 +1,9 @@
-const expressSession = require('express-session')
+const expressSession = require('express-session');
+const crypto = require('crypto');
 
+const secretKey = crypto.randomBytes(32).toString('hex');
 const sessionMiddleware = expressSession({
-    secret: 'your-secret-key', 
+    secret: secretKey, 
     resave: false,            
     saveUninitialized: true,   
     cookie: {

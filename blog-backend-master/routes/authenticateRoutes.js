@@ -72,7 +72,7 @@ router.post('/auth/logout',(req,res)=>{
 });
 
 router.get('/auth/user',(req,res)=>{
-    if (req.session.user) {
+    if (!req.session.user) {
         res.status(401).json({ message: 'Unauthorized' });
       } else {
         res.json({ user: req.session.user });

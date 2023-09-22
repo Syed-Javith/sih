@@ -7,11 +7,12 @@ function RequestCard(props) {
 
     const {user , requests , setRequests} = useUser();
 
+    const userData = JSON.parse(localStorage.getItem('userData'));
     const approve = (e)=>{
         console.log("pressed");
         const name  = props.request.name;
         const username = props.request.username;
-        const url = `http://localhost:5000/admin/req/${user?.username}/${username}/${name}`;
+        const url = `http://localhost:5000/admin/req/${userData?.username}/${username}/${name}`;
         console.log(url);
 
         axios.post(url)
@@ -34,9 +35,6 @@ function RequestCard(props) {
         <Card.Text>
           {props.request.request}
         </Card.Text>
-        {/* <Card.Link href="#"></Card.Link>
-        <Card.Link href="#">Another Link</Card.Link> */
-        }
         <Button onClick={(e)=>approve(e)} variant='primary'>Approve</Button>
         <Button variant='danger'>Disapprove</Button>
       </Card.Body>

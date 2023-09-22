@@ -19,13 +19,16 @@ const Home = (props) => {
     axios.post(url)
     .then((result) => {
       alert("logged out successfully");
-      setUser(null);
+      // setUser(null);
+      localStorage.removeItem('userData');
     }).catch((err) => {
       console.log(err);
     });
   }
 
-  
+  const userData = JSON.parse(localStorage.getItem('userData'));
+  // const USER = (userData);
+  // console.log(userData);
 
   return (
     <section id={props.id}>
@@ -44,17 +47,31 @@ const Home = (props) => {
 
       <div className='col-lg-6' >
         <div className='d-flex flex-row-reverse'>
-        { user == null || user?.username == null ? 
+        {/* { user == null || user?.username == null ? 
         <NavBar /> : 
         <>
         <p className='username'>{user?.username}</p>
         <a onClick={logout} className='btn btn-outline-light home-btns'>logout</a>
         {
         isAdmin && <Link className='btn btn-outline-light home-btns' to='/admin' >Admin</Link>
-}  
+        }  
+        </>
+        } */}
+        
+         
+        
+        { userData === null || userData?.username === null ? 
+        <NavBar /> : 
+        <>
+        <p className='username'>{userData?.username}</p>
+        <a onClick={logout} className='btn btn-outline-light home-btns'>logout</a>
+        {
+        userData?.isAdmin && <Link className='btn btn-outline-light home-btns' to='/admin' >Admin</Link>
+        }  
         </>
         }
         </div>
+        <h1>{userData?.username}</h1> 
         <div className='d-flex flex-row-reverse'>
           <HomeLink refer="#about-us" title="About Us"/>
           <HomeLink refer="#posts" title="Posts"/>

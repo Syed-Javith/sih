@@ -68,10 +68,6 @@
   padding: 30px;
 }
 
-
-
-
-
 .tags{
   border-radius: 20px;
   background-color: #D76D77;
@@ -99,3 +95,6 @@ label{
   color: white;
 }
 
+.error{
+  color: white;
+}

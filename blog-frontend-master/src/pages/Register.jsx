@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../contexts/userContext';
 import axios from 'axios';
 import peernet from '../images/peernet.png'
 
 const Register = () => {
-  const { setUser } = useUser();
-
   const [user , setUserName] = useState("");
   const [password , setPassword] = useState("");
   const [collegeName , setCollegeName] = useState("");
@@ -67,17 +64,15 @@ return (
               </div>
 
               <div className="form-group">
-  <label htmlFor="isAdmin">Are you a Admin ?</label>
-  <input
-    name="isAdmin"
-    onChange={(e) => setIsAdmin(e.target.checked)}
-    type="checkbox"
-    id="isAdmin"
-    checked={isAdmin}
-  />
-</div>
-
-
+                <label htmlFor="isAdmin">Are you a Admin ?</label>
+                <input
+                  name="isAdmin"
+                  onChange={(e) => setIsAdmin(e.target.checked)}
+                  type="checkbox"
+                  id="isAdmin"
+                  checked={isAdmin}
+                />
+              </div>
               <button type="submit" className="btn btn-primary">Submit</button>
           </form>
           </div>

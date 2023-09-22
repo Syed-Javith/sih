@@ -1,20 +1,22 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import { useUser } from '../contexts/userContext'
+import {Link, useLocation} from 'react-router-dom'
 const NavBar = () => {
 
-    const {isAdmin } = useUser();
     const classes = "btn btn-outline-light home-btns";
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    const location = useLocation();
 
   return (
     <div>
       <>
         {
-            isAdmin && <Link className={classes} to='/admin' >Admin</Link>
+            userData?.isAdmin && <Link className={classes} to='/admin' >Admin</Link>
         }
-        <Link to='/login' className='btn btn-outline-light home-btns'>Login</Link>
-        <Link to='/register' className='btn btn-outline-light home-btns'>Regiter</Link>
-        <Link to='/' className='btn btn-outline-light home-btns' >Home</Link>
+        <Link to='/login' className={classes}>Login</Link>
+        <Link to='/register' className={classes}>Regiter</Link>
+        {
+          location !== '' && <Link to='/' className={classes} >Home</Link>
+        }
     </>
     </div>
   )
