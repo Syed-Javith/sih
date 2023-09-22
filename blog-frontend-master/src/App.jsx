@@ -1,7 +1,6 @@
-import './App.css';
+
 import HomePage from './pages/HomePage';
 import Login from './pages/Login';
-
 import { BrowserRouter as Router , Routes , Route, useNavigate } from 'react-router-dom';
 import Register from './pages/Register';
 import { UserProvider, useUser } from './contexts/userContext';
@@ -9,6 +8,7 @@ import axios from 'axios';
 import Error from './pages/Error';
 import { useEffect } from 'react';
 import Admin from './pages/Admin';
+
 
 function App() {
 

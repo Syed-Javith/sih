@@ -1,0 +1,54 @@
+
+.edit-delete-btns{
+    margin-top: 10px;
+  }
+  .edit-delete-btns button.btn{
+    margin: 10px;
+  }
+  
+  .blog-container{
+    padding: 10px;
+    justify-content: left;
+    width: 40%;
+  }
+  
+  h1.center{
+    text-align: center;
+    color: black;
+  }
+  
+  .add-btn.btn{
+    color: white;
+    background-color: #D76D77;
+    margin: 10px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 25px;
+    /* align-self: flex-end; */
+  }
+
+
+#posts{
+    padding: 3rem;
+    width: 80%;
+}
+
+#posts h1{
+    font-size: 3rem;
+}
+  
+.blog-container h2{
+  padding : 20px 0 ;
+}
+  
+.blog-container p{
+  font-size: 1.15rem;
+  padding-left: 0;
+}
+  
+.blog-container{
+    /* border : 5px solid black; */
+    padding: 20px;
+    margin : 10px;
+}

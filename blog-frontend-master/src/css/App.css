@@ -1,0 +1,101 @@
+.home{
+  background-image: url('../images/back.jfif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.91;
+  padding: 40px;
+}
+
+.head-container {
+  color: white;
+  padding: 25px;
+}
+
+.nav-link{
+  color: white;
+}
+
+.head-container h1{
+  font-weight: 400;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 3.5rem;
+}
+
+.head-container h2{
+  font-size: 3rem;
+}
+
+.home-btns{
+  margin: 5px;
+}
+
+.home-links{
+  margin: 10px;
+  font-size: 1.25rem
+}
+
+.flex-row-reverse{
+  margin-bottom: 25px;
+}
+
+.hr{
+  width: 60%;
+  color: white;
+  border: 0;
+  border-bottom: 2px solid white;
+  opacity: 1;
+}
+
+.head-container div{
+  padding: 40px 0;
+}
+
+.right-home{
+  height: 400px;
+  border-radius: 25px;
+  background-color: #D9D9D9;
+}
+
+
+
+.username{
+  color: white;
+  margin-left: 2px;
+  align-self: flex-end;
+}
+
+.no-post{
+  padding: 30px;
+}
+
+
+
+
+
+.tags{
+  border-radius: 20px;
+  background-color: #D76D77;
+  color: white;
+  margin: 3px;
+  padding: 8px 15px ;
+}
+
+label{
+  color: white;
+}
+
+
+.carousel-item img{
+  opacity: 0.75;
+}
+
+.form-group , .form-group label{
+  margin: 10px 0;
+}nav{
+  background-color: black;
+  color : white;
+}
+.navbar-brand{
+  color: white;
+}
+

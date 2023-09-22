@@ -1,6 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './css/index.css';
+import './css/App.css';
+import './css/Login.css'
+import './css/Post.css'
+import './css/AboutUs.css'
+import './css/Footer.css'
+import './css/Admin.css'
 import App from './App';
 import { UserProvider } from './contexts/userContext';
 import 'bootstrap/dist/css/bootstrap.min.css';

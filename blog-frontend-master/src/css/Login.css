@@ -1,0 +1,19 @@
+div.login-main{
+    /* background-image: url('./images/space.jpg'); */
+    opacity: 0.899;
+    height: 100vh;
+    color: black;
+    background-color: black;
+    padding: 30px;
+  } 
+.edit-form-modal {
+    padding: 10px;
+}
+  
+.edit-form-modal .form-group , .edit-form-modal label{
+    padding-bottom: 20px;
+}
+  
+div.login-main img{
+    border: 2px solid white;
+}

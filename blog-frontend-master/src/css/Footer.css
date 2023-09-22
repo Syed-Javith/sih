@@ -1,0 +1,22 @@
+
+.contact a , .footer-list a{
+    text-decoration: none;
+    color: white;
+  }
+  
+  .col-lg-4.profile {
+    text-align: justify;
+    padding: 40px;
+  }
+  
+  .links div , ul li{
+    margin: 10px 0;
+  }
+  
+  .footer-list{
+    list-style-type: none;
+    list-style-position: outside;
+    padding: 0;
+    margin: 0;
+  }
+  
