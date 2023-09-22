@@ -98,13 +98,17 @@
   /* opacity: 0.4; */
 }
 
+.edit-delete-btns{
+  margin-top: 10px;
+}
 .edit-delete-btns button.btn{
-  margin: 5px;
+  margin: 10px;
 }
 
 .blog-container{
   padding: 10px;
   justify-content: left;
+  width: 40%;
 }
 
 h1.center{
@@ -134,10 +138,12 @@ h1.center{
 
 
 
-.login-main{
-  background-image: url('./images/space.jpg');
+div.login-main{
+  /* background-image: url('./images/space.jpg'); */
   opacity: 0.899;
-  height: 500px;
+  height: 100vh;
+  color: black;
+  background-color: black;
 
 }
 
@@ -223,4 +229,59 @@ h1.center{
   color: white;
   margin: 3px;
   padding: 8px 15px ;
+}
+
+label{
+  color: white;
+}
+
+#admin{
+  background-color: #282c34;
+  color: white;
+}
+
+.carousel-item img{
+  opacity: 0.75;
+}
+
+#posts{
+  padding: 3rem;
+  width: 80%;
+}
+
+#posts h1{
+  font-size: 3rem;
+}
+
+.blog-container h2{
+  padding : 20px 0 ;
+}
+
+.blog-container p{
+  font-size: 1.15rem;
+  padding-left: 0;
+  
+}
+
+.blog-container{
+  /* border : 5px solid black; */
+  padding: 20px;
+  margin : 10px;
+}
+.form-group , .form-group label{
+  margin: 10px 0;
+}
+.login-main{
+  padding: 30px;
+}
+nav{
+  background-color: black;
+  color : white;
+}
+.navbar-brand{
+  color: white;
+}
+
+.row-admin{
+  padding: 3rem;
 }

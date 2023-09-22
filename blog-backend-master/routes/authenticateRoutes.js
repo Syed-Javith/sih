@@ -28,13 +28,15 @@ router.post('/auth/login',(req,res)=>{
 });
 
 router.post('/auth/register',(req,res)=>{
-    const {username , password} = req.body;
+    const {username , password , isAdmin , college} = req.body;
 
 
 
     const newUser = new user({
         username : username , 
-        password : password
+        password : password,
+        isAdmin : isAdmin,
+        college : college
     });
 
     user.findOne({ username : username , password : password } )
@@ -69,5 +71,12 @@ router.post('/auth/logout',(req,res)=>{
     });
 });
 
+router.get('/auth/user',(req,res)=>{
+    if (req.session.user) {
+        res.status(401).json({ message: 'Unauthorized' });
+      } else {
+        res.json({ user: req.session.user });
+      }
+})
 
 module.exports = router ;

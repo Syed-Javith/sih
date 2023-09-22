@@ -4,12 +4,18 @@ import image2 from '../../images/innovate.blub.png'
 import image3 from '../../images/innovation.desk.jpg'
 function HomeCarousel() {
   return (
-    <Carousel>
+    <Carousel className='carousel'>
       <Carousel.Item interval={1000}>
         <img height={400} width="100%" src={spaceImage} alt="First slide" />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h3>Why peernet?</h3>
+          <p>
+
+Fostering Innovation: We are committed to promoting innovation by offering a platform where students can share their unique project ideas and gain inspiration from others.
+
+Facilitating Peer Learning: This is a hub for peer learning. By sharing your projects and exploring those of your peers, you can learn from diverse perspectives and experiences.
+
+Ensuring Academic Integrity: We take plagiarism seriously. Our platform is equipped with plagiarism detection tools to maintain the integrity of every project shared..</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={500}>

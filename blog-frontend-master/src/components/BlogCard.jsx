@@ -65,16 +65,17 @@ const BlogCard = (props) => {
 
 
   return (
-    <div className='container-fluid blog-container' style={{ width: "70%"}}>
+    <div className='container-fluid blog-container' style={{ width: "60%"}}>
       <div className='row'>
-        <h3>{props.blog.blogTitle}</h3>
+        <h2>{props.blog.blogTitle}</h2>
         <p>{props.blog.blogBody}</p>
-        <p>by {props.blog.userid}</p>
+        <p>by <strong>{props.blog.userid}</strong></p>
         <p> refer to <a href={props.blog.blogLink}>{props.blog.blogLink}</a></p>
-        <div className='col-lg-1'>
+        <div className='col-lg-2'>
         {
           props.blog.blogTags.map((tag,index)=>{
-            return <a style={{textDecoration : "none"}} href={"https://www.google.com/search?q="+tag}><PostTags key={index} tag={tag}/></a>
+            return <a style={{textDecoration : "none"}} href={"https://www.google.com/search?q="+tag}>
+              <PostTags key={index} tag={tag}/></a>
           })
         }
         </div>

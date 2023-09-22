@@ -2,10 +2,10 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useUser } from '../contexts/userContext';
 import { useNavigate } from 'react-router-dom';
-
+import peernet from '../images/peernet.png'
 const Login = () => {
 
-    const {setUser } = useUser();
+    const {setUser , setIsAdmin} = useUser();
 
     const [user , setUserName] = useState("");
     const [password , setPassword] = useState("");
@@ -25,7 +25,14 @@ const Login = () => {
             console.log(result.data);
             if(result.data?.username){
               setUser(result.data)
+              // console.log(result.data.);
+              if(result.data.isAdmin==true){
+                console.log("admin");
+                setIsAdmin(true);
+                navigate('/admin');
+              }else{
               navigate('/');
+              }
             }
         }).catch((err) => {
             
@@ -37,7 +44,10 @@ const Login = () => {
     <div className='login-main'>
       <div className='container'>
         <div className='row d-flex flex-row justify-content-center'>
-            <div className='col-lg-4 '>
+        <div className='col-lg-6'>
+              <img height={400} width={400} src={peernet}/>
+          </div>
+          <div className='col-lg-6 '>
                 <h1 style={{color : "white"}}>Login Here</h1>
             <form onSubmit={(e) => login(e)} method='post'>
                 <div className="form-group">
