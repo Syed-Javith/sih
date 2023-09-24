@@ -4,11 +4,17 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import PostTags from './Post/PostTags';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 
 const BlogCard = (props) => {
 
-  const { user , blogs , setBlogs } = useUser();
+  const {  blogs , setBlogs } = useUser();
+
+  const user = cookies.get('user');
+
+  const userData = JSON.parse(localStorage.getItem('userData'))
   let tags = "";
  props.blog.blogTags.forEach((tag)=>{
     tags = tags + " "+ tag ; 

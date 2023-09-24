@@ -15,10 +15,10 @@ router.get('/blog/', async (req, res) => {
         });
 })
 
-router.post('/blog/:userid/:blogTitle', async (req, res) => {
+router.post('/blog', async (req, res) => {
     const newBlog = new blog({
-        userid: req.params.userid,
-        blogTitle: req.params.blogTitle,
+        userid: req.body.userid,
+        blogTitle: req.body.blogTitle,
         blogBody: req.body.blogBody,
         blogLink : req.body.blogLink,
         blogTags : req.body.blogTags.split(" ")

@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 import { useUser } from '../contexts/userContext';
 import { useNavigate } from 'react-router-dom';
 import peernet from '../images/peernet.png'
+import Cookies from 'universal-cookie'
+const cookies = new Cookies();
+
 const Login = () => {
 
     const {setUser , setIsAdmin} = useUser();
@@ -29,9 +32,16 @@ const Login = () => {
             setError(true);
           }
             // console.log(result.data);
-            if(result.data?.username){
+            if(result.data?.user){
+              console.log(result.data);
               // When the user logs in or their data changes
-              localStorage.setItem('userData', JSON.stringify(result.data));
+              // localStorage.setItem('userData', JSON.stringify(result.data));
+              cookies.set("token",result.data?.token,{
+                path : '/'
+              });
+              cookies.set("user",result.data?.user,{
+                path : '/'
+              });
               // console.log(localStorage.getItem('userData'));
               setUser(result.data)
               // console.log(result.data.);

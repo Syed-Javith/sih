@@ -13,7 +13,7 @@ const Register = () => {
   const login = (e)=>{
 
       e.preventDefault();
-      console.log(user + " "+password + " "+collegeName + " "+isAdmin);
+      // console.log(user + " "+password + " "+collegeName + " "+isAdmin);
 
       const url = 'http://localhost:5000/auth/register';
       const data = {
@@ -25,9 +25,14 @@ const Register = () => {
       axios.post(url,data)
       .then((result) => {
           console.log(result);
-          if(result.data?.UserAlreadyFound === true){
-            console.log("user found already...");
-            navigate('/login');
+          if(result.data?.code === 11000){
+            setCollegeName("");
+            setPassword("");
+            setUserName("");
+            setIsAdmin(false);
+            alert('user already exists');
+           
+            // navigate('/login');
           }else{
             console.log("registered");
             navigate('/login');
@@ -48,19 +53,41 @@ return (
           <div className='col-lg-6 '>
               <h1 style={{color : "white"}}>Register Here</h1>
           <form onSubmit={(e) => login(e)} method='post'>
+
               <div className="form-group">
               <label htmlFor="exampleInputEmail1">Email address</label>
-              <input name='userid' onChange={(e)=> setUserName(e.target.value)}  type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+              <input name='userid'
+               onChange={(e)=> setUserName(e.target.value)} 
+               value={user} 
+               type="email" 
+               className="form-control" 
+               id="exampleInputEmail1" 
+               aria-describedby="emailHelp" 
+               placeholder="Enter email"/>
               <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
+
               <div className="form-group">
               <label htmlFor="exampleInputPassword1">Password</label>
-              <input name='password' onChange={(e)=> setPassword(e.target.value)} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
+              <input name='password'
+              value={password} 
+              onChange={(e)=> setPassword(e.target.value)} 
+              type="password" 
+              className="form-control" 
+              id="exampleInputPassword1" 
+              placeholder="Password"/>
               </div>
 
               <div className="form-group">
               <label htmlFor="exampleInputPassword1">College Name</label>
-              <input name='collegename' onChange={(e)=> setCollegeName(e.target.value)} type="text" className="form-control" id="exampleInputcollegename1" placeholder="collegename"/>
+              <input 
+              name='collegename' 
+              value={collegeName}
+              onChange={(e)=> setCollegeName(e.target.value)} 
+              type="text" 
+              className="form-control" 
+              id="exampleInputcollegename1" 
+              placeholder="collegename"/>
               </div>
 
               <div className="form-group">

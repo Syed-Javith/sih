@@ -6,6 +6,9 @@ import NoPost from './NoPost';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 const Post = (props) => {
 
     
@@ -22,7 +25,9 @@ const Post = (props) => {
     const navigate = useNavigate();
 
     const userData = JSON.parse(localStorage.getItem('userData'));
-    const {user , blogs , setBlogs} = useUser();
+    const { blogs , setBlogs} = useUser();
+
+    const user = cookies.get('user');
 
     useEffect(()=>{
 
@@ -39,12 +44,12 @@ const Post = (props) => {
 
 
     const add = (e)=>{
-        const url = `http://localhost:5000/blog/${userData?.username}/${newBlogTitle}`;
+        const url = `http://localhost:5000/blog/`;
 
         const data = {
             blogBody : newBlogDescription ,
             blogTitle : newBlogTitle ,
-            userid : userData?.username,
+            userid : user?.username,
             blogLink : newBlogLink,
             blogTags : newBlogTags
         }

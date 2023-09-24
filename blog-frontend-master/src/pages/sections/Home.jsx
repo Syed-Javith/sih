@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react'
 import HomeLink from '../../components/Home/HomeLink'
 import { Link } from 'react-router-dom'
-import { useUser } from '../../contexts/userContext'
-import peernet from '../../images/peernet.png'
 import axios from 'axios'
 import HomeCarousel from '../../components/Home/HomeCarousel'
 import HomeContent from '../../components/Home/HomeContent'
 import NavBar from '../../components/NavBar'
+import Cookies from 'universal-cookie'
+const cookies = new Cookies()
 
 const Home = (props) => {
 
-  const { user  , setUser , isAdmin} = useUser();
+  // const { user  , setUser , isAdmin} = useUser();
 
 
   const logout = ()=>{
@@ -18,17 +18,16 @@ const Home = (props) => {
 
     axios.post(url)
     .then((result) => {
+      cookies.remove('user');
       alert("logged out successfully");
-      // setUser(null);
-      localStorage.removeItem('userData');
+      cookies.remove('user');
     }).catch((err) => {
       console.log(err);
     });
   }
 
-  const userData = JSON.parse(localStorage.getItem('userData'));
-  // const USER = (userData);
-  // console.log(userData);
+  const user = cookies.get('user');
+  console.log(user);
 
   return (
     <section id={props.id}>
@@ -47,31 +46,19 @@ const Home = (props) => {
 
       <div className='col-lg-6' >
         <div className='d-flex flex-row-reverse'>
-        {/* { user == null || user?.username == null ? 
-        <NavBar /> : 
-        <>
-        <p className='username'>{user?.username}</p>
-        <a onClick={logout} className='btn btn-outline-light home-btns'>logout</a>
-        {
-        isAdmin && <Link className='btn btn-outline-light home-btns' to='/admin' >Admin</Link>
-        }  
-        </>
-        } */}
-        
          
         
-        { userData === null || userData?.username === null ? 
+        {user === null || user === undefined || user?.username === null  ? 
         <NavBar /> : 
         <>
-        <p className='username'>{userData?.username}</p>
+        <p className='username'>{user?.username} </p>
         <a onClick={logout} className='btn btn-outline-light home-btns'>logout</a>
         {
-        userData?.isAdmin && <Link className='btn btn-outline-light home-btns' to='/admin' >Admin</Link>
+         user?.isAdmin && <Link className='btn btn-outline-light home-btns' to='/admin' >Admin</Link>
         }  
         </>
         }
         </div>
-        <h1>{userData?.username}</h1> 
         <div className='d-flex flex-row-reverse'>
           <HomeLink refer="#about-us" title="About Us"/>
           <HomeLink refer="#posts" title="Posts"/>

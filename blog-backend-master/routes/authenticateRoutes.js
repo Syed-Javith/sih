@@ -1,4 +1,5 @@
 const express = require('express'); 
+const jwt = require('jsonwebtoken');
 const user = require('../models/userModel');
 
 const router = express.Router();
@@ -8,19 +9,27 @@ router.post('/auth/login',(req,res)=>{
 
     console.log(username + " " + password);
 
-    user.findOne({ username : username , password : password } )
+    user.findOne({ username : username  } )
     .then((result) => {
-        const user = result;
         console.log(result);
-        if(user === null ){
-            console.log("not");
-            res.status(401).send({ message : "user not found" , isUserFound : false })
-        }else{
-            console.log("logged");
-            user.loggedIn = true;
-            req.session.user = user;
-            console.log(user);
-            res.send(user);
+        if(result.password === password){
+            console.log(password);
+            const token = jwt.sign( {
+                username : username,
+                isAdmin :  result.isAdmin
+            } , "MY_KEY" , {
+                expiresIn : '1h'
+            });
+
+            res.status(200).send(
+                {
+                    token,
+                     user : { 
+                        username : username , 
+                        isAdmin : result.isAdmin
+                    }
+                }
+            );
         }
     }).catch((err) => {
         res.status(401).send(err);
@@ -38,11 +47,6 @@ router.post('/auth/register',(req,res)=>{
         isAdmin : isAdmin,
         college : college
     });
-
-    user.findOne({ username : username , password : password } )
-    .then((result) => {
-        const user = result;
-        if(user === null ){
             newUser.save()
             .then((result) => {
                 result.isRegistered = true ;
@@ -50,25 +54,19 @@ router.post('/auth/register',(req,res)=>{
                 res.send(data);
             }).catch((err) => {
                 console.log(err);
-                res.status(401).send(err);
+                res.send(err);
             });
-        }else{
-            res.send({result , UserAlreadyFound : true});
-        }
-    }).catch((err) => {
-        res.status(401).send(err);
-    });
 
    
 });
 
 router.post('/auth/logout',(req,res)=>{
-    req.session.destroy((err)=>{
-        if(err){
-            console.log("trouble logging out");
-        }
-        res.send({message : "logged out successfully"});
-    });
+    // req.session.destroy((err)=>{
+    //     if(err){
+    //         console.log("trouble logging out");
+    //     }
+        res.status(200).send({message : "logged out successfully"});
+    // });
 });
 
 router.get('/auth/user',(req,res)=>{

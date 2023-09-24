@@ -10,16 +10,12 @@ const staticMiddleware = require('./middlewares/staticMiddleware');
 const blogRoutes = require('./routes/blogRoutes');
 const corsMiddleware = require('./middlewares/corsMiddleware');
 const authenticateRoutes = require('./routes/authenticateRoutes');
-const sessionMiddleware = require('./middlewares/sessionMiddleware');
 const adminRoutes = require('./routes/adminRoutes');
-const adminRequestRoutes = require('./routes/adminRoutes/adminRequestRoutes');
 
 app.use(express.json());
 app.use(staticMiddleware);
 app.use(bodyParserMiddleware);
 app.use(corsMiddleware);
-app.use(sessionMiddleware);
-
 connectToMongo(); 
 
 app.use('/',blogRoutes);

@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const request = require('./requestSchema');
 
 const userSchema = new mongoose.Schema({
-    username: String,
+    username: {
+        type : String ,
+        unique : true
+    },
     password: String,
     college: String,
     isAdmin: Boolean,
@@ -13,10 +16,10 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.add({
-    requests: [request.schema], // Use the request schema to reference the requests
+    requests: [request.schema], 
 });
 
-userSchema.pre('save', function (next) { // Use a regular function here, not an arrow function
+userSchema.pre('save', function (next) { 
     if (this.isAdmin) {
         this.requests = [
             {

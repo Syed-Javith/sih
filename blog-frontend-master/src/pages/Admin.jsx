@@ -1,38 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import NavBar from '../components/NavBar'
 import { useUser } from '../contexts/userContext';
-import axios from 'axios';
 import RequestCard from '../components/Admin/RequestCard';
 import { useNavigate } from 'react-router-dom';
 import { getRequests } from '../apis/adminApis';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 const Admin = () => {
-    const {user , requests , setRequests} = useUser();
+    const {requests , setRequests} = useUser();
     const navigate = useNavigate();
+    const user = cookies.get('user');
 
     // const [requests , setRequests] =useState([]);
     const userData = JSON.parse(localStorage.getItem('userData'));
     // console.log(userData);
 
     useEffect(()=>{
-        
-        // const url =`http://localhost:500/admin/request/${userData?.username}`;
-        // console.log(url);
-
-        // axios.get(url)
-        // .then((result) => {
-        //     // console.log("result");
-        //     // console.log(result);
-        //     setRequests(result.data.requests);
-        // }).catch((err) => {
-        //     console.log("erroe");
-        //     console.log(err);
-        // });
-
-
         const GetRequests = async ()=>{
          try {
-          const userRequests =  await getRequests(userData?.username)
+          const userRequests =  await getRequests(user?.username)
           setRequests(userRequests);
          } catch (error) {
           console.log(error);
@@ -46,10 +33,6 @@ const Admin = () => {
 
   return (
     <div id="admin">
-        {/* <NavBar />
-      Admin {user?.username
-      } */}
-
 
 <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
