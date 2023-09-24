@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import HomeLink from '../../components/Home/HomeLink'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -19,14 +19,14 @@ const Home = (props) => {
     axios.post(url)
     .then((result) => {
       cookies.remove('user');
+      setUser(cookies.get('user'))
       alert("logged out successfully");
-      cookies.remove('user');
     }).catch((err) => {
       console.log(err);
     });
   }
 
-  const user = cookies.get('user');
+  const [user,setUser] = useState(cookies.get('user'));
   console.log(user);
 
   return (
