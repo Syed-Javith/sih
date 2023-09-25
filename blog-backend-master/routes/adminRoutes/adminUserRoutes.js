@@ -13,7 +13,8 @@ router.post('/user/', (req,res)=>{
         request : req.body.blogBody,
         domain : req.body.domain ,
         link : req.body.blogLink,
-        college : req.body.college
+        college : req.body.college,
+        tags : req.body.blogTags.split(" ")
     })
 
     User.updateOne({ college : req.body.college , isAdmin : true },{ $push : { requests : newRequest } })

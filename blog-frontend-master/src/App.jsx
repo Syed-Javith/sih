@@ -7,6 +7,8 @@ import { UserProvider } from './contexts/userContext';
 import Error from './pages/Error';
 import Admin from './pages/Admin';
 import ProtectedRoutes from './contexts/ProtectedRoutes';
+import Statistics from './pages/sections/Admin/Statistics';
+import Request from './pages/sections/Admin/Request';
 
 
 function App() {
@@ -26,9 +28,10 @@ function App() {
       <ProtectedRoutes >
          <Admin />
       </ProtectedRoutes>
-    }
-
-    />
+    }>
+      <Route path='requests' element={<Request />} index/>
+      <Route path='statistics' element={<Statistics />}/>
+    </Route>
   </Routes>
 
  </Router>

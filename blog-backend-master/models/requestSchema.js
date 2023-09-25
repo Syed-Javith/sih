@@ -10,7 +10,8 @@ const requestSchema = new mongoose.Schema({
     request : String ,
     domain : String,
     link : String,
-    college : String 
+    college : String,
+    tags : [String]
 })
 
 const request = new mongoose.model('request',requestSchema);

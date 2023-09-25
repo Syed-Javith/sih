@@ -21,12 +21,17 @@ router.post('/blog', async (req, res) => {
         blogTitle: req.body.blogTitle,
         blogBody: req.body.blogBody,
         blogLink : req.body.blogLink,
-        blogTags : req.body.blogTags.split(" ")
+        blogTags : req.body.blogTags,
+        college : req.body.college
     })
+
+    console.log(newBlog);
 
     await newBlog.save()
         .then((result) => {
+            console.log("post added");
             console.log(result);
+            res.status(200).send(result);
         }).catch((err) => {
             console.log(err);
         });

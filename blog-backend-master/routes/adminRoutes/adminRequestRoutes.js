@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../../models/userModel'); 
+const axios = require('axios');
 
 router.get('/request/:admin', async (req, res) => {
     const adminName = req.params.admin;
@@ -22,7 +23,7 @@ router.get('/request/:admin', async (req, res) => {
 
 
 
-router.post('/request/:admin/:user/:project', async (req, res) => {
+router.patch('/request/approve/:project', async (req, res) => {
     const project = req.params.project;
     console.log(project);
 
@@ -36,7 +37,23 @@ router.post('/request/:admin/:user/:project', async (req, res) => {
         })
     .then((result) => {
         console.log(result);
-        res.send(result)
+        const body = {
+            userid: req.body.username,
+            blogTitle: req.body.name,
+            blogBody: req.body.request,
+            blogLink : req.body.link,
+            blogTags : req.body.tags,
+            college : req.body.college
+        }
+        console.log(body);
+        axios.post('http://localhost:5000/blog',body)
+        .then((result) => {
+            console.log("added post received");
+            console.log(result);
+            res.status(200).send({ message : "post added" })
+        }).catch((err) => {
+            res.status(400).send(err);
+        });
     }).catch((err) => {
         console.log(err);
     });
@@ -47,7 +64,7 @@ router.post('/request/:admin/:user/:project', async (req, res) => {
 });
 
 
-router.patch('/request', async (req,res)=>{
+router.patch('/request/reject/', async (req,res)=>{
     
     const name = req.body.name;
     const college = req.body.college;

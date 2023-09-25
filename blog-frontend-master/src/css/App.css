@@ -87,8 +87,9 @@ label{
 
 .form-group , .form-group label{
   margin: 10px 0;
-}nav{
-  background-color: black;
+}
+nav{
+  background-color:  #282c34;
   color : white;
 }
 .navbar-brand{

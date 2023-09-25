@@ -12,22 +12,24 @@ const Home = (props) => {
 
   // const { user  , setUser , isAdmin} = useUser();
 
-
+  const [user,setUser] = useState(cookies.get('user'));
   const logout = ()=>{
     const url = "http://localhost:5000/auth/logout/"
 
     axios.post(url)
     .then((result) => {
       cookies.remove('user');
-      setUser(cookies.get('user'))
+      // setUser(cookies.get('user'))
+      const afterLogout = cookies.get('user');
+      setUser(afterLogout);
       alert("logged out successfully");
     }).catch((err) => {
       console.log(err);
     });
   }
 
-  const [user,setUser] = useState(cookies.get('user'));
-  console.log(user);
+  
+  // console.log(user);
 
   return (
     <section id={props.id}>

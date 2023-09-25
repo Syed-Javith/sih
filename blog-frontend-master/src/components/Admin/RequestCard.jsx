@@ -11,11 +11,10 @@ function RequestCard(props) {
     const approve = (e)=>{
         console.log("pressed");
         const name  = props.request.name;
-        const username = props.request.username;
-        const url = `http://localhost:5000/admin/req/${userData?.username}/${username}/${name}`;
+        const url = `http://localhost:5000/admin/request/approve/${name}`;
         console.log(url);
 
-        axios.post(url)
+        axios.patch(url,props.request)
         .then((result) => {
             const newRequests = requests.filter((req)=>{
               return req.name !== props.request.name;
@@ -28,6 +27,7 @@ function RequestCard(props) {
     }
 
   return (
+    <div className='col-lg-3'>
     <Card style={{ width: '18rem' }}>
       <Card.Body>
         <Card.Title>{props.request.name}</Card.Title>
@@ -39,6 +39,7 @@ function RequestCard(props) {
         <Button variant='danger'>Disapprove</Button>
       </Card.Body>
     </Card>
+    </div>
   );
 }
 
