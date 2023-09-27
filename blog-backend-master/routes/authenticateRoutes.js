@@ -26,7 +26,8 @@ router.post('/auth/login',(req,res)=>{
                     token,
                      user : { 
                         username : username , 
-                        isAdmin : result.isAdmin
+                        isAdmin : result.isAdmin,
+                        college : result.college
                     }
                 }
             );

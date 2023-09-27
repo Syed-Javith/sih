@@ -11,23 +11,24 @@ const cookies = new Cookies();
 
 const Post = (props) => {
 
-    
+  const user = cookies.get('user');
+
   const [newBlogTitle , setNewBlogTitle] = useState("");
   const [newBlogDescription , setNewBlogDescription] = useState("");
   const [newBlogTags , setNewBlogTags] = useState("");
   const [newBlogLink , setNewBlogLink] = useState("");
+  const [newBlogDomain , setNewBlogDomain] = useState("");
+  const [newBlogCollge , setNewBlogCollege] = useState(user?.college);
+
+  
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const navigate = useNavigate();
+
+  const { blogs , setBlogs} = useUser();
 
     
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    const navigate = useNavigate();
-
-    const userData = JSON.parse(localStorage.getItem('userData'));
-    const { blogs , setBlogs} = useUser();
-
-    const user = cookies.get('user');
 
     useEffect(()=>{
 
@@ -44,14 +45,26 @@ const Post = (props) => {
 
 
     const add = (e)=>{
-        const url = `http://localhost:5000/blog/`;
+        const url = `http://localhost:5000/admin/user`;
 
         const data = {
             blogBody : newBlogDescription ,
             blogTitle : newBlogTitle ,
-            userid : user?.username,
+            username : user?.username,
             blogLink : newBlogLink,
-            blogTags : newBlogTags
+            blogTags : newBlogTags,
+            domain : newBlogDomain ,
+            college : newBlogCollge 
+
+
+            // username : req.body.username,
+            // name : req.body.blogTitle ,
+            // isApproved : false ,
+            // request : req.body.blogBody,
+            // domain : req.body.domain ,
+            // link : req.body.blogLink,
+            // college : req.body.college,
+            // tags : req.body.blogTags.split(" ")
         }
         axios.post(url,data)
         .then((result) => {
@@ -99,22 +112,37 @@ const Post = (props) => {
         <Modal.Body className='add-form-modal'>
           You can make new contents here!
           <form onSubmit={(e) => add(e)} method='post'>
+
           <div className="form-group">
                 <label htmlFor="newblogtitle">New Title : </label>
-                <input name='userid' onChange={(e)=> setNewBlogTitle(e.target.value)}  type="email" className="form-control" id="newblogtitle" aria-describedby="emailHelp" placeholder="Enter new titile..."/>
+                <input name='userid' onChange={(e)=> setNewBlogTitle(e.target.value)} className="form-control" id="newblogtitle" aria-describedby="emailHelp" placeholder="Enter new titile..."/>
           </div>
-                <div className="form-group">
+
+          <div className="form-group">
                 <label htmlFor="exampleFormControlTextarea1">Blog : </label>
                 <textarea onChange={(e) => setNewBlogDescription(e.target.value)} className="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
-                </div>
-                <div className="form-group">
+          </div>
+
+          <div className="form-group">
                 <label htmlFor="newblogtags">New tags : </label>
-                <input name='userid' onChange={(e)=> setNewBlogTags(e.target.value)}  type="email" className="form-control" id="newblogtags" aria-describedby="emailHelp" placeholder="Enter new tags seperated by space..."/>
-                </div>
-                <div className="form-group">
-                <label htmlFor="newblogtags">New Link : </label>
-                <input name='userid' onChange={(e)=> setNewBlogLink(e.target.value)}  type="email" className="form-control" id="newblogtags" aria-describedby="emailHelp" placeholder="Enter link to your project..."/>
-                </div>
+                <input name='userid' onChange={(e)=> setNewBlogTags(e.target.value)} className="form-control" id="newblogtags" aria-describedby="emailHelp" placeholder="Enter new tags seperated by space..."/>
+          </div>
+
+          <div className="form-group">
+                <label htmlFor="newBlogLink">New Link : </label>
+                <input name='userid' onChange={(e)=> setNewBlogLink(e.target.value)} className="form-control" id="newBlogLink" aria-describedby="emailHelp" placeholder="Enter link to your project..."/>
+          </div>
+
+          <div className="form-group">
+                <label htmlFor="NewBlogDomain">New Link : </label>
+                <input name='userid' onChange={(e)=> setNewBlogDomain(e.target.value)} className="form-control" id="NewBlogDomain" placeholder="Enter your domain..."/>
+          </div>
+
+          <div className="form-group">
+                <label htmlFor="NewBlogCollege">New Link : </label>
+                <input name='userid' className="form-control" id="NewBlogCollege" placeholder={newBlogCollge} value={newBlogCollge}/>
+          </div>
+
           <Button variant="primary" onClick={(e)=> add(e)}>
             Save Changes
           </Button>
